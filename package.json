@@ -1,0 +1,40 @@
+{
+  "name": "si-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "helmet": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "node-fetch": "^2.6.1",
+    "sequelize": "^6.3.5",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3"
+},
+"devDependencies": {
+    "nodemon": "^2.0.4",
+      "eslint": "^7.0.0",
+      "eslint-config-prettier": "^6.12.0",
+      "eslint-plugin-node": "^11.1.0",
+      "eslint-plugin-prettier": "^3.1.4",
+      "eslint-plugin-promise": "^4.2.1",
+      "prettier": "^2.1.2",
+      "eslint-plugin-import": "^2.22.1",
+      "eslint-plugin-jsx-a11y": "^6.3.1",
+      "eslint-plugin-react": "^7.21.2",
+      "eslint-plugin-react-hooks": "^4.1.2"
+},
+"scripts": {
+    "start": "nodemon app.js",
+    "test": "mocha --parallel --timeout 5000 --exit"
+},
+  "author": "Kristoffer Tølbøll & Jonas Grønbek",
+  "license": "ISC"
+}
