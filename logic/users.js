@@ -1,8 +1,4 @@
 module.exports = {
-    signIn: () => {
-
-    },
-    signUp: () => {
-        
-    }
+    signIn: () => {},
+    signUp: () => {}
 }

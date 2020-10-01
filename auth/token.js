@@ -11,20 +11,20 @@ const PUBLIC_KEY = fs.readFileSync(
     'utf8'
 )
 
-const signJwt = (payload) => {
+const signJwt = payload => {
     const signOptions = {
         issuer: 'mindtherags',
         expiresIn: '30d',
-        algorithm: 'RS256',
+        algorithm: 'RS256'
     }
     return jwt.sign(payload, PRIVATE_KEY, signOptions)
 }
 
-const verifyJwt = (token) => {
+const verifyJwt = token => {
     const verifyOptions = {
         issuer: 'mindtherags',
         expiresIn: '30d',
-        algorithms: ['RS256'],
+        algorithms: ['RS256']
     }
     try {
         return jwt.verify(token, PUBLIC_KEY, verifyOptions)
@@ -33,13 +33,12 @@ const verifyJwt = (token) => {
     }
 }
 
-const decodeJwt = (token) => {
+const decodeJwt = token => {
     return jwt.decode(token, { complete: true })
 }
-
 
 module.exports = {
     decode: decodeJwt,
     sign: signJwt,
-    verify: verifyJwt,
+    verify: verifyJwt
 }

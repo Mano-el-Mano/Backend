@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 
 const ROUNDS = 9
 
-const hash = (password) => {
+const hash = password => {
     return bcrypt.hash(password, ROUNDS)
 }
 

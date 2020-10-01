@@ -38,33 +38,23 @@ app.all('*', (req, res, next) => {
 })
 
 app.listen(PORT, () => {
-    db.sync().then((_) => {
-        console.log(
-            `started postgres and the mindtherags backend listening on http://localhost:${PORT}`
-        )
-    }).catch(e => {
-        console.warn(e)
-    })
+    db.sync()
+        .then(_ => {
+            console.log(
+                `started postgres and the mindtherags backend listening on http://localhost:${PORT}`
+            )
+        })
+        .catch(e => {
+            console.warn(e)
+        })
 })
 
-process.on('unhandledRejection', (reason) => {
-    log({
-        status: 'SHUTDOWN',
-        error: 'unhandledRejection',
-        message: 'an unhandled exception occurred',
-        stack: reason.stack.toString(),
-    }).then((_) => {
-        process.exit(1)
-    })
+process.on('unhandledRejection', reason => {
+    console.warn('shutting down: ', reason)
+    process.exit(1)
 })
 
-process.on('uncaughtException', (reason) => {
-    log({
-        status: 'SHUTDOWN',
-        error: 'uncaughtException',
-        message: 'an uncaught exception occurred',
-        stack: reason.stack.toString(),
-    }).then((_) => {
-        process.exit(1)
-    })
+process.on('uncaughtException', reason => {
+    console.warn('shutting down: ', reason)
+    process.exit(1)
 })

@@ -2,29 +2,20 @@ const express = require('express')
 const router = express.Router()
 const users = require('../../../logiclayer/users')
 const ResourceError = require('../../../errors/ResourceError')
-const forwarder = require('../../util/forwarder')
+const forwarder = require('../util/forwarder')
 
 router.post(
     '/sign-up',
     forwarder(async (req, res, next) => {
-        const {
-            email,
-            password,
-            name,
-        } = req.body
+        const { email, password, name } = req.body
         try {
-            const data = await users.signUp(
-                email,
-                password,
-                name
-            )
+            const data = await users.signUp(email, password, name)
             const { jwt, user } = data
             res.status(201).json({
                 msg: 'successfully created user!',
                 jwt,
-                user,
+                user
             })
-
         } catch (e) {
             next(new ResourceError(e.toString(), 500))
         }
@@ -42,10 +33,9 @@ router.post(
                 msg: 'successfully logged in user!',
                 jwt,
                 user,
-                posts,
+                posts
             })
-        }
-        catch (e) {
+        } catch (e) {
             next(new ResourceError(e.toString(), 500))
         }
     })

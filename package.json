@@ -17,24 +17,24 @@
     "sequelize": "^6.3.5",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3"
-},
-"devDependencies": {
+  },
+  "devDependencies": {
     "nodemon": "^2.0.4",
-      "eslint": "^7.0.0",
-      "eslint-config-prettier": "^6.12.0",
-      "eslint-plugin-node": "^11.1.0",
-      "eslint-plugin-prettier": "^3.1.4",
-      "eslint-plugin-promise": "^4.2.1",
-      "prettier": "^2.1.2",
-      "eslint-plugin-import": "^2.22.1",
-      "eslint-plugin-jsx-a11y": "^6.3.1",
-      "eslint-plugin-react": "^7.21.2",
-      "eslint-plugin-react-hooks": "^4.1.2"
-},
-"scripts": {
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "prettier": "^2.1.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.2",
+    "eslint-plugin-react-hooks": "^4.1.2"
+  },
+  "scripts": {
     "start": "nodemon app.js",
     "test": "mocha --parallel --timeout 5000 --exit"
-},
+  },
   "author": "Kristoffer Tølbøll & Jonas Grønbek",
   "license": "ISC"
 }
