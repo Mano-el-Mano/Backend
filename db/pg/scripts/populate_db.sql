@@ -1,4 +1,4 @@
-\c mindtherags_development
+\c si_development
 DO
 $$
     DECLARE
