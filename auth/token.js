@@ -3,17 +3,17 @@ const fs = require('fs')
 const path = require('path')
 
 const PRIVATE_KEY = fs.readFileSync(
-    path.join(path.join(path.dirname(__filename), 'ssh')),
+    path.join(path.join(path.dirname(__filename), 'private.key')),
     'utf8'
 )
 const PUBLIC_KEY = fs.readFileSync(
-    path.join(path.join(path.dirname(__filename), 'ssh.pub')),
+    path.join(path.join(path.dirname(__filename), 'public.key')),
     'utf8'
 )
 
 const signJwt = payload => {
     const signOptions = {
-        issuer: 'mindtherags',
+        issuer: 'si',
         expiresIn: '30d',
         algorithm: 'RS256'
     }
@@ -22,7 +22,7 @@ const signJwt = payload => {
 
 const verifyJwt = token => {
     const verifyOptions = {
-        issuer: 'mindtherags',
+        issuer: 'si',
         expiresIn: '30d',
         algorithms: ['RS256']
     }
