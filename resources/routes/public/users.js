@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const users = require('../../../logiclayer/users')
-const ResourceError = require('../../../errors/ResourceError')
-const forwarder = require('../util/forwarder')
+const users = require('../../../logic/users')
+const ResourceError = require('../../errors/ResourceError')
+const forwarder = require('../../util/forwarder')
 
 router.post(
     '/sign-up',
@@ -28,6 +28,11 @@ router.post(
         const { email, password } = req.body
         try {
             const data = await users.signIn(email, password)
+            if (data.success === false) {
+                res.status(401).json({
+                    msg: `email and password does not match`
+                })
+            }
             const { jwt, user, posts } = data
             res.status(200).json({
                 msg: 'successfully logged in user!',

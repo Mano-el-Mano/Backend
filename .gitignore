@@ -1,4 +1,2 @@
 /node_modules
 /package.json
-/db/pg/scripts/create-user.sh
-/db/pg/scripts/populate-db.sh
