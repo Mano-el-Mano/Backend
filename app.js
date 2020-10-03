@@ -38,8 +38,8 @@ app.all('*', (req, res, next) => {
 })
 
 app.listen(PORT, () => {
-    db.sync()
-        .then(_ => {
+    db.sync({ force: true })
+        .then(() => {
             console.log(
                 `started postgres and the mindtherags backend listening on http://localhost:${PORT}`
             )

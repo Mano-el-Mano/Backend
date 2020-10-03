@@ -14,9 +14,9 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.27.0",
     "node-fetch": "^2.6.1",
-    "sequelize": "^6.3.5",
     "pg": "^8.3.3",
-    "pg-hstore": "^2.3.3"
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
