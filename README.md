@@ -1,5 +1,7 @@
 # si-backend
 
+This project is for an assignment in a system integration course. Where we are suppose to interact a RESTful service and a SOAP service. To achieve this we have decided on creating a web application where users can create and see others posts.
+
 ## To run project
 
 prerequisites: node.js and npm
