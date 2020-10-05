@@ -1,4 +1,4 @@
-# si-backend
+# Backend
 
 setup linter
 
@@ -27,14 +27,3 @@ install prettier plugin (disable it after installation)
         "enable": true
     },
 }
-
-## TO RUN PROJECT
-
-```
-first allow scripts to be run cd to {project}/db/pg(scripts) and 
-```bash
-chmod 775 create-user.sh create-db.sh populate-db.sh
-``` 
-
-to create database first run ``create-db.sh`` and ``create-user.sh`` then ``npm start`` and the project will create the database. If you want to populate the database with some initial data run ``populate-db.sh``.
-# Backend
