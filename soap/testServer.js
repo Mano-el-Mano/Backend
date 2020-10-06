@@ -21,6 +21,11 @@ var service = {
                 const userId = args.userId;
                 const foundUser = await users.getUser(userId)
                 return {user: JSON.stringify(foundUser)}
+            },
+            getAllUsers: async function(args){
+                console.log(args)
+                const foundUsers = await users.getUsers();
+                return {users: JSON.stringify(foundUsers)}
             }
         }
     }

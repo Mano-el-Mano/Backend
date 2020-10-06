@@ -22,4 +22,9 @@ soap.createClient(url, function(err, client) {
         console.log(res)  
     })
 
+    client.getAllUsers({}, function(err, res){
+        if(err) throw err;
+        console.log(res)
+    })
+
 });
