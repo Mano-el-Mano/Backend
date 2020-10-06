@@ -9,8 +9,14 @@ const router = express.Router()
 const ResourceError = require('./resources/errors/ResourceError')
 const requireAuthentication = require('./resources/middleware/requireAuth')
 const cors = require('cors')
+const soap = require('soap');
+const wsdl = require('fs').readFileSync('./soap/wscalc1.wsdl', 'utf8');
+const service = require('./soap/testServer')
+const http = require('http')
 
-const PORT = process.env.port
+
+const PORT = process.env.port || 3000
+const SOAP_PORT = process.env.soapPort || 8001
 
 const app = express()
 
@@ -23,6 +29,10 @@ if (process.env.mode === 'development') {
         next()
     })
 }
+
+app.get('/', (req, res) => {
+    return res.send('hello world')
+})
 
 app.use(router)
 router.use('/public', publicRoutes)
@@ -37,6 +47,16 @@ app.all('*', (req, res, next) => {
     )
 })
 
+
+
+var server = http.createServer(function(request,response) {
+    response.end("404: Not Found: "+request.url);
+});
+
+
+server.listen(SOAP_PORT, () => console.log(`Soap service listening on port ${SOAP_PORT}`));
+soap.listen(server, '/wscalc1', service, wsdl);
+
 app.listen(PORT, () => {
     db.sync()
         .then(() => {
@@ -48,6 +68,9 @@ app.listen(PORT, () => {
             console.warn(e)
         })
 })
+
+
+
 
 process.on('unhandledRejection', reason => {
     console.warn('shutting down: ', reason)

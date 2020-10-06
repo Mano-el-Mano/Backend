@@ -5,6 +5,25 @@ const token = require('../auth/token')
 const { Users } = db.models
 
 module.exports = {
+
+
+    getUsers: async () =>{
+        const users = await Users.findAll()
+        return users;
+    },
+
+    getUser: async (id) =>{
+        const user = await Users.findOne({
+            where: {
+                id: id
+            }
+        });
+        console.log(user.dataValues)
+        
+        return user.dataValues;
+    },
+
+
     signUp: async (email, password, name) => {
         const hash = await bcrypt.hash(password)
         try {
