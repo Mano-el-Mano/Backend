@@ -2,13 +2,14 @@ const express = require('express')
 const router = express.Router()
 const users = require('../../../logic/users')
 const ResourceError = require('../../errors/ResourceError')
-const forwarder = require('../../util/forwarder')
+const enableExceptionHandler = require('../../util/enableExceptionHandler')
 
 router.post(
     '/sign-up',
-    forwarder(async (req, res, next) => {
-        const { email, password, name } = req.body
+    enableExceptionHandler(async (req, res, next) => {
         try {
+            //checks if they exist
+            const { email, password, name } = req.body
             const data = await users.signUp(email, password, name)
             const { jwt, user } = data
             res.status(201).json({
@@ -24,14 +25,12 @@ router.post(
 
 router.post(
     '/sign-in',
-    forwarder(async (req, res, next) => {
+    enableExceptionHandler(async (req, res, next) => {
         const { email, password } = req.body
         try {
             const data = await users.signIn(email, password)
             if (data.success === false) {
-                res.status(401).json({
-                    msg: `email and password does not match`
-                })
+                next(new ResourceError('Unaothorized', 401))
             }
             const { jwt, user, posts } = data
             res.status(200).json({

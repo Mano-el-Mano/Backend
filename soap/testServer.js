@@ -1,36 +1,31 @@
-
-var soap = require('soap');
-var http = require('http');
-
 const users = require('../logic/users')
 
 var service = {
     ws: {
         calc: {
-            sumar : function(args) {
-                var n = 1*args.a + 1*args.b;
-                return { sumres : n };
+            sumar: function (args) {
+                var n = 1 * args.a + 1 * args.b
+                return { sumres: n }
             },
 
-            multiplicar : function(args) {
-                var n = args.a * args.b;
-                return { mulres : n };
+            multiplicar: function (args) {
+                var n = args.a * args.b
+                return { mulres: n }
             },
-            
-            getUser: async function(args){
-                const userId = args.userId;
+
+            getUser: async function (args) {
+                const userId = args.userId
                 const foundUser = await users.getUser(userId)
-                return {user: JSON.stringify(foundUser)}
+                return { user: JSON.stringify(foundUser) }
             },
-            getAllUsers: async function(args){
+            getAllUsers: async function (args) {
                 console.log(args)
-                const foundUsers = await users.getUsers();
-                return {users: JSON.stringify(foundUsers)}
+                const foundUsers = await users.getUsers()
+                return { users: JSON.stringify(foundUsers) }
             }
         }
     }
-};
-
+}
 
 /*
 

@@ -1,39 +1,21 @@
 const db = require('../db/pg/models')
 const bcrypt = require('../auth/bcrypt')
 const token = require('../auth/token')
+const ResourceError = require('../resources/errors/ResourceError')
 
 const { Users } = db.models
 
 module.exports = {
-
-
-    getUsers: async () =>{
-        const users = await Users.findAll()
-        return users;
-    },
-
-    getUser: async (id) =>{
-        const user = await Users.findOne({
-            where: {
-                id: id
-            }
-        });
-        console.log(user.dataValues)
-        
-        return user.dataValues;
-    },
-
-
     signUp: async (email, password, name) => {
         const hash = await bcrypt.hash(password)
         try {
             const { dataValues: user } = await Users.create({
                 email,
-                password: hash,
+                p_hash: hash,
                 name,
                 createAt: Date()
             })
-            delete user.password
+            delete user.p_hash
 
             const jwt = token.sign({
                 id: user.id,
@@ -49,7 +31,7 @@ module.exports = {
             if (e.code === '23505') {
                 return { success: false, user: null }
             } else {
-                throw new Error(e)
+                throw new ResourceError('Unaothorized', 401)
             }
         }
     },
@@ -60,17 +42,14 @@ module.exports = {
                 email
             }
         })
-        console.log('res', res)
         if (
             res === null ||
-            !(await bcrypt.compare(password, res.dataValues.password))
+            !(await bcrypt.compare(password, res.dataValues.p_hash))
         ) {
-            return {
-                success: false
-            }
+            throw new ResourceError('Unaothorized', 401)
         }
         const { dataValues: user } = res
-        delete user.password
+        delete user.p_hash
 
         const jwt = token.sign({
             id: user.id,

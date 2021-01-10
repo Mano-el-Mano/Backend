@@ -3,8 +3,8 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
     class Users extends Model {
         static associate(models) {
-            const { Users, Posts } = models
-            Users.hasMany(Posts, {
+            const { Users, Reservations } = models
+            Users.hasMany(Reservations, {
                 foreignKey: {
                     name: 'user_id',
                     allowNull: false
@@ -20,16 +20,16 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 type: DataTypes.INTEGER
             },
-            name: {
-                allowNull: false,
-                type: DataTypes.STRING
-            },
             email: {
                 allowNull: false,
                 type: DataTypes.STRING,
                 unique: true
             },
-            password: {
+            p_hash: {
+                allowNull: false,
+                type: DataTypes.STRING
+            },
+            name: {
                 allowNull: false,
                 type: DataTypes.STRING
             }

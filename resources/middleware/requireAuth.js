@@ -1,8 +1,8 @@
 const token = require('../../auth/token')
-const forwarder = require('../util/forwarder')
+const enableExceptionHandler = require('../util/enableExceptionHandler')
 const ResourceError = require('../errors/ResourceError')
 
-module.exports = forwarder(async (req, res, next) => {
+module.exports = enableExceptionHandler(async (req, res, next) => {
     const authHeader = req.headers.authorization
     if (authHeader === undefined) {
         res.status(401).json({ msg: 'error: no authorization header' })

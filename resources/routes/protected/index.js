@@ -1,8 +1,10 @@
 const express = require('express')
-const postRoutes = require('./posts')
+const carRoutes = require('./cars')
+const reservationRoutes = require('./reservations')
 
 const router = express.Router()
 
-router.use('/posts', postRoutes)
+router.use('/cars', carRoutes)
+router.use('/reservations', reservationRoutes)
 
 module.exports = router
