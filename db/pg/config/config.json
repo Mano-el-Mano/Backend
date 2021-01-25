@@ -7,11 +7,11 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "si",
-    "password": "qweasdzxc",
+    "username": "microk8s",
+    "password": "123qweasdzxc",
     "database": "si_production",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "host": "34.89.128.178",
+    "dialect": "mysql"
   }
 }
 
