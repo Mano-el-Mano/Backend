@@ -9,7 +9,6 @@ router.post(
     enableExceptionHandler(async (req, res, next) => {
         try {
             const { model, brand, release } = req.body
-            console.log(req.bodys)
             const car = await cars.createCar(model, brand, release)
             res.status(201).json(car)
         } catch (e) {
@@ -36,7 +35,6 @@ router.get(
     enableExceptionHandler(async (req, res, next) => {
         try {
             const allCars = await cars.getAll()
-            console.log('cars')
             res.status(200).json(allCars)
         } catch (e) {
             next(new ResourceError(e.toString(), 500))

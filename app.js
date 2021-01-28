@@ -55,7 +55,7 @@ server.listen(SOAP_PORT, () =>
 soap.listen(server, '/wscalc1', service, wsdl)
 
 app.listen(PORT, () => {
-    db.sync()
+    db.sync({ force: true })
         .then(() => {
             console.log(
                 `started postgres and the mindtherags backend listening on http://localhost:${PORT}`
